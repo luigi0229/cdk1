@@ -103,10 +103,16 @@ async function searchProduct(tags) {
           }
       }
 
-    return buildResponse(200, filteredItems);
-  }, (error) => {
-    return buildResponse(501, {"error fetching": error})
-  });
+      if(filteredItems.length === 0) {
+        return buildResponse(200, {"Message": "No items associated with these tags"});
+
+      } else {
+        return buildResponse(200, filteredItems);
+      }
+
+    }, (error) => {
+      return buildResponse(501, {"error fetching": error})
+    });
 }
 
 
