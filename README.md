@@ -2,7 +2,7 @@
 
 This is a simple REST API application that handles GET and POST requests to
 insert and query a DynamoDB table. It uses a CDK Stack to deploy the
-API Gateway with the required routes, the Lambda function using Node runtime,
+API Gateway with the required routes, a Lambda function using Node runtime,
 and the DynamoDB table.
 
 ## prerequisites
@@ -23,9 +23,8 @@ The REST API examples are below:
 ## Create a new product
 
 Creates a new product by passing the required parameters in
-compliance with the validation schema on src/models.js
-The validation needs to be set up manually on the API route
-by first creating the model, and attaching it to the route to validate only the body.
+compliance with the validation schema.
+
 
 ### Request
 
@@ -43,6 +42,7 @@ Retrieves a product by passing it's productId.
 `GET /products`
 
     curl --location --request GET 'API_URL/products?productId=123' \ --data-raw ''
+
 
 ## Search for products with matching tags
 
