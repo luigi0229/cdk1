@@ -6,3 +6,24 @@ node_modules
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+# Local state files & OS specifics
+.DS_Store
+node_modules/
+lerna-debug.log
+dist/
+pack/
+.BUILD_COMPLETED
+.local-npm/
+.tools/
+coverage/
+.nyc_output
+.nycrc
+.LAST_BUILD
+*.sw[a-z]
+*~
+.idea
+junit.xml
+
+# We don't want tsconfig at the root
+/tsconfig.json

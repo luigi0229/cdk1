@@ -50,6 +50,6 @@ Retrieves all products containing matching tags.
 
 ### Request
 
-`POST /products`
+`POST /search`
 
     curl --location --request POST 'API_URL/search?tags=mango' \--data-raw ''
