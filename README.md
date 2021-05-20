@@ -1,4 +1,4 @@
-# Serverless REST API Application using AWS CDK, API Gateway, Lambda and DynamoDB
+# Serverless REST API Application
 
 This is a simple REST API application that handles GET and POST requests to
 insert and query a DynamoDB table. It uses a CDK Stack to deploy the
@@ -41,7 +41,7 @@ Retrieves a product by passing it's productId.
 
 `GET /products`
 
-    curl --location --request GET 'API_URL/products?productId=123' \ --data-raw ''
+    curl --location --request GET 'API_URL/products?productId=123' --data-raw ''
 
 
 ## Search for products with matching tags

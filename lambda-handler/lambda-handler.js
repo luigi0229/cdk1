@@ -26,18 +26,18 @@ exports.handler = async function(event) {
   return response;
 }
 
-async function getProducts() {
-  const params = {
-    TableName: dynamodbTableName
-  }
-  //scan the dynamodb for all products
-  //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.04.html
-  const allProducts = await dynamodb.scan(params).promise();
-  const body = {
-    _records: allProducts.Items
-  }
-  return buildResponse(200, body);
-}
+// async function getProducts() {
+//   const params = {
+//     TableName: dynamodbTableName
+//   }
+//   //scan the dynamodb for all products
+//   //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.04.html
+//   const allProducts = await dynamodb.scan(params).promise();
+//   const body = {
+//     _records: allProducts.Items
+//   }
+//   return buildResponse(200, body);
+// }
 
 async function getProduct(productId) {
   const params = {
@@ -47,7 +47,12 @@ async function getProduct(productId) {
     }
   }
   return await dynamodb.get(params).promise().then((response) => {
-    return buildResponse(200, response.Item);
+    if(Object.keys(response).length === 0) {
+      return buildResponse(200, {"Message": "Item doesn't exist"});
+    } else
+    {
+      return buildResponse(200, response.Item);
+    }
   }, (error) => {
     return buildResponse(501, {"error fetching": error})
   });
