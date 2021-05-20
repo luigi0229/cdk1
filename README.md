@@ -14,14 +14,42 @@ and the DynamoDB table.
 
     cdk deploy
 
+    It returns the API URL
+
 # REST API
 
 The REST API examples are below:
 
-## Create a new Object
+## Create a new product
+
+Creates a new product by passing the required parameters in
+compliance with the validation schema on src/models.js
+The validation needs to be set up manually on the API route
+by first creating the model, and attaching it to the route to validate only the body.
 
 ### Request
 
 `POST /products`
 
     curl --location --request POST 'API_URL/products' \--header 'Content-Type: application/json' \--data-raw '{"name": "foo","id": "2","price": 5,"tags":["tag1","tag2","tag3"]}'
+
+
+## Retrieve an product
+
+Retrieves a product by passing it's productId.
+
+### Request
+
+`GET /products`
+
+    curl --location --request GET 'API_URL/products?productId=123' \ --data-raw ''
+
+## Search for products with matching tags
+
+Retrieves all products containing matching tags.
+
+### Request
+
+`POST /products`
+
+    curl --location --request POST 'API_URL/search?tags=mango' \--data-raw ''

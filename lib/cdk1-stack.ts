@@ -10,9 +10,7 @@ export class Cdk1Stack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
     //Create Dynamodb table
-    //
     const table = new dynamodb.Table(this, 'serverlessExcercise', {
       partitionKey: { name: 'id', type: dynamodb.AttributeType.STRING }
     });
@@ -53,7 +51,7 @@ export class Cdk1Stack extends cdk.Stack {
     .addMethod("POST", new apigateway.LambdaIntegration(dynamoLambdaFn))
 
     new cdk.CfnOutput(this, "HTTP API URL", {
-      value: api.url ?? "Something went wrong"
+      value: api.url ?? "Something failed"
     });
 
   }
