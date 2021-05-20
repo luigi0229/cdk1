@@ -1,14 +1,37 @@
-# Welcome to your CDK TypeScript project!
+# Serverless REST API Application using AWS CDK, API Gateway, Lambda and DynamoDB
 
-This is a blank project for TypeScript development with CDK.
+This is a simple REST API application that handles GET and POST requests to
+insert and query a DynamoDB table. It uses a CDK Stack to deploy the
+API Gateway with the required routes, the Lambda function using Node runtime,
+and the DynamoDB table.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The entire application is contained within the `app.rb` file.
 
-## Useful commands
+`config.ru` is a minimal Rack configuration for unicorn.
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+`run-tests.sh` runs a simplistic test and generates the API
+documentation below.
+
+It uses `run-curl-tests.rb` which runs each command defined in
+`commands.yml`.
+
+## prerequisites
+
+  * AWS CDK environment configured and initialized with required credentials
+  * AWSCloudFormationFullAccess role attached to corresponding user
+
+## Deployment
+
+    cdk deploy
+
+# REST API
+
+The REST API examples are below:
+
+## Create a new Object
+
+### Request
+
+`GET /products`
+
+    curl --location --request POST 'API_URL/products' \--header 'Content-Type: application/json' \--data-raw '{"name": "foo","id": "2","price": 5,"tags":["tag1","tag2","tag3"]}'
