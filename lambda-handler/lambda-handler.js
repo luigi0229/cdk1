@@ -26,18 +26,6 @@ exports.handler = async function(event) {
   return response;
 }
 
-// async function getProducts() {
-//   const params = {
-//     TableName: dynamodbTableName
-//   }
-//   //scan the dynamodb for all products
-//   //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.04.html
-//   const allProducts = await dynamodb.scan(params).promise();
-//   const body = {
-//     _records: allProducts.Items
-//   }
-//   return buildResponse(200, body);
-// }
 
 async function getProduct(productId) {
   const params = {
@@ -86,11 +74,8 @@ async function searchProduct(tags) {
   }
   var testTags = tags.split(",");
 
+  //Query function could be use instead for efficiency
   return await dynamodb.scan(params).promise().then((response) => {
-    //Having a hard time with the query function when comparing multiple strings
-    //doing a nested loop for now. It's not efficient, but it gets the job done
-    //until i can figure out how to query properly
-    // return buildResponse(201, {"items": response.Items[0]})
     var filteredItems = []
     var index;
     var innerIndex;

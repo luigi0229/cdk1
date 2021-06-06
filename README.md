@@ -1,9 +1,11 @@
 # Serverless REST API Application
 
-This is a simple REST API application that handles GET and POST requests to
+This is a simple REST API application that handles requests to
 insert and query a DynamoDB table. It uses a CDK Stack to deploy the
 API Gateway with the required routes, a Lambda function using Node runtime,
 and the DynamoDB table.
+
+The requirements for the schema are defined and enforced at the API Gateway level, on `lib/cdk1-stack.ts`
 
 ## prerequisites
 
